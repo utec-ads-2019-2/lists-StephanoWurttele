@@ -10,19 +10,26 @@ class ForwardIterator : public Iterator<T> {
         ForwardIterator(Node<T> *node) : Iterator<T>(node) {};
 
         ForwardIterator<T> operator=(ForwardIterator<T> other) {
-            // TODO
+            this->current=other->current;
+            return(*this);
         }
 
         bool operator!=(ForwardIterator<T> other) {
-            // TODO
+            return(this->current!=this->current->next);
         }
 
         ForwardIterator<T> operator++() {
-            // TODO
+            if(this->current->next!=nullptr){
+                this->current=this->current->next;
+                return(*this);
+            }
+            else
+            {
+                throw out_of_range("Out of range");
+            }
         }
-
         T operator*() {
-            // TODO
+            return(this->current->data);
         }
 };
 
