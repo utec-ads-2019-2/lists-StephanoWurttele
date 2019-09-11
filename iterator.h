@@ -13,5 +13,4 @@ class Iterator {
         Iterator(Node<T> *node) : current(node) {};
         virtual T operator*() = 0;
 };
-
 #endif

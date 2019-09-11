@@ -110,6 +110,8 @@ class LinkedList : public List<T> {
 
         void clear() {
             this->head->killSelf();
+            this->head=nullptr;
+            this->tail=nullptr;
             this->nodes=0;
         }
 
@@ -151,11 +153,11 @@ class LinkedList : public List<T> {
         }
 
         BidirectionalIterator<T> begin() {
-            // TODO
+            return {this->head};
         }
 
 	    BidirectionalIterator<T> end() {
-            // TODO
+            return {this->tail};
         }
 
         void merge(LinkedList<T> list) {

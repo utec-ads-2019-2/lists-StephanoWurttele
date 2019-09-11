@@ -24,27 +24,27 @@ class CircularLinkedList : public List<T> {
         }
 
         void push_front(T value) {
-            Node<T>* temp=new Node<T>;
-            this->tail->next=temp;
-            temp->data=value;
-            if(this->head==nullptr){
-                temp->next=this->tail;
+             Node<T> *temp=new Node<T>;
+             temp->data=value;
+            if (this->head==nullptr){
                 this->head=temp;
-                this->tail=this->head;
-            }
-            else{
-                this->head->prev=temp;
+                this->tail=temp;
+                this->nodes++;
+            }else{
                 temp->next=this->head;
+                (this->head)->prev=temp;
                 this->head=temp;
+                this->head->prev=this->tail;
+                this->tail->next=this->head;
+                this->nodes++;
             }
-            this->nodes++;
         }
 
         void push_back(T value) {
             Node<T>* temp=new Node<T>;
             temp->data=value;
+            temp->next=this->head;
             if(this->head==nullptr){
-                temp->next=temp;
                 temp->prev=temp;
                 this->head=temp;
                 this->tail=temp;
@@ -55,7 +55,7 @@ class CircularLinkedList : public List<T> {
                 this->tail=temp;
             }
             this->nodes++;
-            temp=this->head;
+            this->head->prev=temp;
             
         }
 
@@ -108,7 +108,16 @@ class CircularLinkedList : public List<T> {
         }
 
         void clear() {
-            this->head->killSelf();
+            auto temp=this->tail;
+            while(temp!=this->head){
+                temp->next=nullptr;
+                auto temp2=temp->prev;
+                delete temp;
+                temp=temp2;
+            }
+            delete this->head;
+            this->head=nullptr;
+            this->tail=nullptr; 
             this->nodes=0;
         }
 
@@ -148,11 +157,11 @@ class CircularLinkedList : public List<T> {
         }
 
         BidirectionalIterator<T> begin() {
-            // TODO
+            return {this->head};
         }
 
 	    BidirectionalIterator<T> end() {
-            // TODO
+            return {this->tail};
         }
 
         void merge(CircularLinkedList<T> list) {

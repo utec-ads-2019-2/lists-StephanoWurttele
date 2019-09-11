@@ -73,11 +73,16 @@ class List {
         virtual void sort() = 0;
         virtual void reverse() = 0;
         virtual string name() = 0;
-
         ~List() {
-            head->killSelf();
-            head->next=nullptr;
-        }
+            Node<T>* temp=head;
+            const auto destruir = [&](const auto destruir,Node<T>* temp2)->void{
+                if(temp2->next==nullptr || temp2->next==head)
+                    return;
+                destruir(destruir,temp2->next);
+                delete temp2;
+            };
+            destruir(destruir,temp);
+        };
 };
 
 #endif

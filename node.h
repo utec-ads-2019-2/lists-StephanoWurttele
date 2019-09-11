@@ -10,6 +10,7 @@ struct Node {
     void killSelf() {
         if(this->next!=nullptr)
             this->next->killSelf();
+        this->next=nullptr;
         delete this;
     }
 };
