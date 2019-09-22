@@ -8,6 +8,7 @@ void Tester::execute() {
         for (int j = 0; j < NUMBER_OF_TESTS; ++j) {
             testList<int>(collections[i]);
             testList<char>(collections[i]);
+            cout << "Test passed: " << j + 1 << endl;
         }
     }
 }

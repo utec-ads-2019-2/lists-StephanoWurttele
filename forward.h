@@ -74,6 +74,7 @@ class ForwardList : public List<T> {
         }
 
         T operator[](int index) {
+            // Caso negativo?
             if (index<this->nodes){
                 Node<T>* temp=this->head;
                 while(index--)
@@ -113,6 +114,7 @@ class ForwardList : public List<T> {
             }
         }
         void reverse() {
+            // Podría hacerse más eficiente
             Node<T>* tempnode= this->head;
             Node<T>* temp= new Node<T>[this->nodes];
 
@@ -136,6 +138,7 @@ class ForwardList : public List<T> {
         }
 
         ForwardIterator<T> end() {
+            // Siguiente de tail
             return {this->tail};
         }
 

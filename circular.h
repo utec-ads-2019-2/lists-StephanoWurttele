@@ -24,6 +24,8 @@ class CircularLinkedList : public List<T> {
         }
 
         void push_front(T value) {
+
+            // No es necesario tener cola en esta lista
              Node<T> *temp=new Node<T>;
              temp->data=value;
             if (this->head==nullptr){
@@ -161,6 +163,7 @@ class CircularLinkedList : public List<T> {
         }
 
 	    BidirectionalIterator<T> end() {
+            // Cómo manejas el bucle con iterador?
             return {this->tail};
         }
 
